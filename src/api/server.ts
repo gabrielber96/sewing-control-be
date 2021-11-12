@@ -7,18 +7,25 @@ import express, {
 } from "express";
 import cors from "cors";
 import morgan from "morgan";
+import { createServer } from "http";
+import { Server as SocketServer, Socket } from "socket.io";
 
 export class Server {
   private _app: Application;
+  private _httpServer;
+  private _io;
   private _port: number;
   private _router: Router;
   constructor(port: number) {
     this._app = express();
+    this._httpServer = createServer(this._app);
+    this._io = new SocketServer(this._httpServer);
     this._router = Router();
     this._port = port;
     this.middlewares();
     this.routes();
     this.errors();
+    this.socket();
   }
   routes(): void {}
   errors(): void {
@@ -54,7 +61,12 @@ export class Server {
     // passport.use(passportMiddleware)
   }
   start(callback: () => void): void {
-    this._app.listen(this._port, callback);
+    this._httpServer.listen(this._port, callback);
+  }
+  socket() {
+    this._io.on("connection", (socket: Socket) => {
+      console.log("Se inicio!");
+    });
   }
   static init(port: number): Server {
     return new Server(port);
