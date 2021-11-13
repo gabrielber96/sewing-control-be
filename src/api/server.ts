@@ -66,6 +66,13 @@ export class Server {
   socket() {
     this._io.on("connection", (socket: Socket) => {
       console.log("Se inicio!");
+      socket.on("send-message", (obj) => {
+        console.log(obj);
+        this._io.emit("all-message", "Te regreso a " + obj.name);
+      });
+      socket.on("disconnect", () => {
+        console.log("Se desconecto");
+      });
     });
   }
   static init(port: number): Server {
