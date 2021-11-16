@@ -1,6 +1,9 @@
 import { Server } from "./api/server";
+import { config } from "./config";
+import { DataBase } from "./database";
 
-const server = Server.init(Number(3000));
+const server = Server.init(config.PORT);
 server.start(() => {
-  console.log("Server on fire " + 3000);
+  console.log("Server on fire " + config.PORT);
+  DataBase.instance
 });
