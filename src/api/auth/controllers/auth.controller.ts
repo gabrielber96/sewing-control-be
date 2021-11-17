@@ -10,9 +10,9 @@ export const signUpController = async (req: Request, res: Response, next: NextFu
       cellphone: req.body.cellphone,
       email: req.body.email,
       name: req.body.name,
+      lastname: req.body.lastname,
       password: req.body.password,
       sexo: req.body.sexo,
-      lastname: req.body.lastname,
       image: req.body.image,
     });
     res.status(200).json('¡usuario creado!');

@@ -26,7 +26,7 @@ export class Server {
   }
   routes(): void {
     //* AUTHENTICATE
-    this._router.use('/', routerAuth);
+    this._app.use('/', routerAuth);
   }
   errors(): void {
     this._router.use((req: Request, res: Response, next: NextFunction) => {
