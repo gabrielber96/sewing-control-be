@@ -26,14 +26,21 @@ exports.Server = void 0;
 const express_1 = __importStar(require("express"));
 const cors_1 = __importDefault(require("cors"));
 const morgan_1 = __importDefault(require("morgan"));
+const http_1 = require("http");
+const socket_io_1 = require("socket.io");
+const passport_1 = __importDefault(require("passport"));
+const passport_2 = __importDefault(require("../helpers/passport"));
 class Server {
     constructor(port) {
-        this._app = (0, express_1.default)();
-        this._router = (0, express_1.Router)();
+        this._app = express_1.default();
+        this._httpServer = http_1.createServer(this._app);
+        this._io = new socket_io_1.Server(this._httpServer);
+        this._router = express_1.Router();
         this._port = port;
         this.middlewares();
         this.routes();
         this.errors();
+        this.socket();
     }
     routes() { }
     errors() {
@@ -52,19 +59,31 @@ class Server {
         });
     }
     middlewares() {
-        this._app.use((0, cors_1.default)({ credentials: true }));
-        this._app.use((0, morgan_1.default)("dev"));
-        this._app.use(express_1.default.json({ limit: "50mb" }));
+        this._app.use(cors_1.default({ credentials: true }));
+        this._app.use(morgan_1.default('dev'));
+        this._app.use(express_1.default.json({ limit: '50mb' }));
         this._app.use(express_1.default.urlencoded({
-            limit: "50mb",
+            limit: '50mb',
             extended: true,
             parameterLimit: 50000,
         }));
-        // this._router.use(passport.initialize())
-        // passport.use(passportMiddleware)
+        this._router.use(passport_1.default.initialize());
+        passport_1.default.use(passport_2.default);
     }
     start(callback) {
-        this._app.listen(this._port, callback);
+        this._httpServer.listen(this._port, callback);
+    }
+    socket() {
+        this._io.on('connection', (socket) => {
+            console.log('Se inicio!');
+            socket.on('send-message', (obj) => {
+                console.log(obj);
+                this._io.emit('all-message', 'Te regreso a ' + obj.name);
+            });
+            socket.on('disconnect', () => {
+                console.log('Se desconecto');
+            });
+        });
     }
     static init(port) {
         return new Server(port);

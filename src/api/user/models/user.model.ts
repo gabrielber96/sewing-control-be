@@ -15,6 +15,7 @@ export interface UserAttributes {
   key?: string;
   path?: string;
   size?: string;
+  image?: Buffer;
 }
 export interface UserModel extends Model<UserAttributes>, UserAttributes {}
 export class User extends Model<UserModel, UserAttributes> {}

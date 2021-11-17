@@ -5,6 +5,7 @@ import { createServer } from 'http';
 import { Server as SocketServer, Socket } from 'socket.io';
 import passport from 'passport';
 import passportMiddleware from '../helpers/passport';
+import { router as routerAuth } from '../api/auth/routes/auth.routes';
 
 export class Server {
   private _app: Application;
@@ -23,7 +24,10 @@ export class Server {
     this.errors();
     this.socket();
   }
-  routes(): void {}
+  routes(): void {
+    //* AUTHENTICATE
+    this._router.use('/', routerAuth);
+  }
   errors(): void {
     this._router.use((req: Request, res: Response, next: NextFunction) => {
       const err = new Error(`Not Fount - ${req.originalUrl}`);
