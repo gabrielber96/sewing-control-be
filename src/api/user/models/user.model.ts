@@ -3,7 +3,7 @@ export interface UserAttributes {
   id?: number;
   dni?: number;
   password?: string;
-  salt?: string;
+  date?: Date;
   name?: string;
   lastname?: string;
   email?: string;
@@ -40,9 +40,6 @@ export function UserFactory(sequelize: Sequelize): UserStatic {
       password: {
         type: DataTypes.STRING(300),
       },
-      salt: {
-        type: DataTypes.STRING(500),
-      },
       name: {
         type: DataTypes.STRING(100),
         allowNull: true,
@@ -50,6 +47,10 @@ export function UserFactory(sequelize: Sequelize): UserStatic {
       lastname: {
         type: DataTypes.STRING(100),
         allowNull: true,
+      },
+      date: {
+        type: DataTypes.DATE,
+        allowNull: false,
       },
       email: {
         type: DataTypes.STRING(100),
@@ -93,7 +94,7 @@ export function UserFactory(sequelize: Sequelize): UserStatic {
       indexes: [
         {
           unique: true,
-          fields: ['email'],
+          fields: ['email', 'dni'],
         },
       ],
     }

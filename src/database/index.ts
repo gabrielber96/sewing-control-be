@@ -26,7 +26,7 @@ export class DataBase {
   private connectDb(): void {
     this.sequelize
       .authenticate()
-      //   .sync({ alter: true, logging: console.log })
+      // .sync({ alter: true, logging: console.log })
       .then(() => {
         // this.bank.sync({ alter: true, logging: console.log })
         console.log('¡Run database!');

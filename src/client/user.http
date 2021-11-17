@@ -3,12 +3,12 @@ POST {{uri}}/signup
 Content-Type: application/json
 
 {
-    "dni":75652679,
+    "dni":75652678,
     "cellphone":936865356,
     "email":"gabrielberdejo96@gmail.com",
     "name":"gabriel",
     "lastname":"berdejo",
-    "password":"123456",
+    "password":"1234578",
     "sexo":"masculino"
 }
 ###
