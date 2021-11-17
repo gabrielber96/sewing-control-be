@@ -13,6 +13,7 @@ export const signUpController = async (req: Request, res: Response, next: NextFu
       lastname: req.body.lastname,
       password: req.body.password,
       sexo: req.body.sexo,
+      date: req.body.date,
       image: req.body.image,
     });
     res.status(200).json('¡usuario creado!');

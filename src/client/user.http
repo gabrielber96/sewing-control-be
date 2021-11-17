@@ -1,4 +1,4 @@
-### creacion del usuario
+### @DESC creacion del usuario
 POST {{uri}}/signup
 Content-Type: application/json
 
@@ -9,7 +9,8 @@ Content-Type: application/json
     "name":"gabriel",
     "lastname":"berdejo",
     "password":"1234578",
-    "sexo":"masculino"
+    "sexo":"masculino",
+    "date":"2021-12-04"
 }
 ###
 GET {{uri}}/rest

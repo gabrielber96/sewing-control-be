@@ -42,5 +42,6 @@ export const signUpValidator = [
     .isLength({ min: 3, max: 100 })
     .withMessage('El minimo es 3 y maximo 100 letras'),
   body('sexo').toLowerCase().isIn(['masculino', 'femenino']).withMessage('Solo se permite Masculino y Femenino'),
+  body('date').isISO8601().withMessage('Se require una fecha valida'),
   allValidator,
 ];
