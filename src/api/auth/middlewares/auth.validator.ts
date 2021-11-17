@@ -1,6 +1,7 @@
 import { body } from 'express-validator';
 import { allValidator } from '../../../helpers/express.validator';
-import { existsUserByDni, existsUserByEmail } from '../../user/validator/user.custom';
+import { existsUserByDni, existsUserByEmail, signInValidation } from '../../user/validator/user.custom';
+import { signInSanitizer } from '../../user/validator/user.sanitizer';
 
 export const signUpValidator = [
   body('dni')
@@ -45,3 +46,4 @@ export const signUpValidator = [
   body('date').isISO8601().withMessage('Se require una fecha valida'),
   allValidator,
 ];
+export const signInValidator = [body('dni').customSanitizer(signInSanitizer).custom(signInValidation)];

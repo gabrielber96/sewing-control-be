@@ -13,4 +13,10 @@ Content-Type: application/json
     "date":"2021-12-04"
 }
 ###
-GET {{uri}}/rest
+POST  {{uri}}/signin
+Content-Type: application/json
+
+{
+    "dni":"75652678",
+    "password":"1234578"
+}
