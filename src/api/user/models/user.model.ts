@@ -16,6 +16,8 @@ export interface UserAttributes {
   path?: string;
   size?: string;
   image?: Buffer;
+  rol_id?: number;
+  sub_rol_id?: number;
 }
 export interface UserModel extends Model<UserAttributes>, UserAttributes {}
 export class User extends Model<UserModel, UserAttributes> {}

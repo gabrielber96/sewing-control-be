@@ -19,10 +19,13 @@ export function RolFactory(sequelize: Sequelize): RolStatic {
         primaryKey: true,
         autoIncrement: true,
       },
+      rol: {
+        type: DataTypes.STRING,
+      },
     },
     {
       initialAutoIncrement: '1',
-      tableName: 'user',
+      tableName: 'rol',
       timestamps: false,
     }
   );

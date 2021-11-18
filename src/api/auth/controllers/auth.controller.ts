@@ -35,6 +35,8 @@ export const signInController = (req: Request, res: Response, next: NextFunction
       date: req.body.date,
       sexo: req.body.sexo,
       path: req.body.path,
+      rol_id: req.body.rol_id,
+      sub_rol_id: req.body.sub_rol_id,
       jwt,
     });
   } catch (err: any) {

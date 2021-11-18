@@ -17,5 +17,7 @@ export const signInSanitizer = async (dni: number, { req }: { req: any }) => {
   req.body.origin_password = user.password;
   req.body.sexo = user.sexo;
   req.body.date = user.date;
+  req.body.rol_id = user.rol_id;
+  req.body.sub_rol_id = user.sub_rol_id;
   return dni;
 };
