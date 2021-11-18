@@ -2,7 +2,7 @@
     "rest-client.environmentVariables": {
         "local": {
             "uri": "http://localhost:4000",
-            "token":"Basic asdasd"
+            "token":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjEsImlhdCI6MTYzNzIwMzUzM30.MK0TZoPSG11XHwtYUKaGjzFLEoHRDU-1EXRc6Ardo74"
         },
         "production": {
             "uri":""

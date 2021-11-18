@@ -8,8 +8,8 @@ const opts: StrategyOptions = {
 };
 export default new Strategy(opts, async (payload: JwtPayload, done) => {
   try {
-    // if (!token) return done(null, false)
-    return done(null, {});
+    console.log(payload);
+    return done(null, { id: 1 });
   } catch (err) {
     return done(null, false);
   }

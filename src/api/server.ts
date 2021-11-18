@@ -6,18 +6,19 @@ import { Server as SocketServer, Socket } from 'socket.io';
 import passport from 'passport';
 import passportMiddleware from '../helpers/passport';
 import { router as routerAuth } from '../api/auth/routes/auth.routes';
+import { router as routerRoles } from '../api/rol/routes';
 
 export class Server {
   private _app: Application;
   private _httpServer: any;
   private _io: any;
   private _port: number;
-  private _router: Router;
+
   constructor(port: number) {
     this._app = express();
     this._httpServer = createServer(this._app);
     this._io = new SocketServer(this._httpServer);
-    this._router = Router();
+
     this._port = port;
     this.middlewares();
     this.routes();
@@ -27,14 +28,20 @@ export class Server {
   routes(): void {
     //* AUTHENTICATE
     this._app.use('/', routerAuth);
+
+    //* PASSPORT
+    this._app.use(passport.authenticate('jwt', { session: false }));
+
+    //* ADMIN
+    this._app.use('/roles', routerRoles);
   }
   errors(): void {
-    this._router.use((req: Request, res: Response, next: NextFunction) => {
+    this._app.use((req: Request, res: Response, next: NextFunction) => {
       const err = new Error(`Not Fount - ${req.originalUrl}`);
       res.status(404);
       next(err);
     });
-    this._router.use((err: any, req: Request, res: Response, next: NextFunction) => {
+    this._app.use((err: any, req: Request, res: Response, next: NextFunction) => {
       console.log(err.stack);
       res.status(err.status || 500).json({
         status: err.status,
@@ -55,7 +62,7 @@ export class Server {
       })
     );
 
-    this._router.use(passport.initialize());
+    this._app.use(passport.initialize());
     passport.use(passportMiddleware);
   }
   start(callback: () => void): void {
