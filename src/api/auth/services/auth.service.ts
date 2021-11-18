@@ -11,12 +11,3 @@ export const signUpService = async (user: UserAttributes) => {
     throw err;
   }
 };
-
-export const signInService = (user: UserAttributes) => {
-  try {
-    const jwt = sign({ _id: user.id }, config.SECRET_HIDDEN_KEY);
-    return { jwt };
-  } catch (err) {
-    throw err;
-  }
-};

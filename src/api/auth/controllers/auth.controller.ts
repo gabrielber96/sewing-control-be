@@ -1,7 +1,9 @@
 import { NextFunction, Request, Response } from 'express';
 import createError from 'http-errors';
+import { sign } from 'jsonwebtoken';
 import Sequelize from 'sequelize';
-import { signInService, signUpService } from '../services/auth.service';
+import { config } from '../../../config';
+import { signUpService } from '../services/auth.service';
 
 export const signUpController = async (req: Request, res: Response, next: NextFunction) => {
   try {
@@ -25,14 +27,16 @@ export const signUpController = async (req: Request, res: Response, next: NextFu
 };
 export const signInController = (req: Request, res: Response, next: NextFunction) => {
   try {
-    const result = signInService({
+    const jwt = sign({ _id: req.body.id }, config.SECRET_HIDDEN_KEY);
+
+    res.status(200).json({
       name: req.body.name,
       lastname: req.body.lastname,
       date: req.body.date,
       sexo: req.body.sexo,
       path: req.body.path,
+      jwt,
     });
-    res.status(200).json(result);
   } catch (err: any) {
     if (err instanceof Sequelize.ValidationError) next(createError(400, err));
 

@@ -46,4 +46,4 @@ export const signUpValidator = [
   body('date').isISO8601().withMessage('Se require una fecha valida'),
   allValidator,
 ];
-export const signInValidator = [body('dni').customSanitizer(signInSanitizer).custom(signInValidation)];
+export const signInValidator = [body('dni').customSanitizer(signInSanitizer).custom(signInValidation), allValidator];
