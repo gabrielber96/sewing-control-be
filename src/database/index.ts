@@ -6,6 +6,7 @@ import { config } from '../config';
 import { rolHasManyUser, subRolHasManyUser } from './associations/user';
 import { CompanyStatic, CompanyFactory } from '../api/company/models/company.model';
 import { companyHasManyUser } from './associations/company';
+import { SuperUserStatic, SuperUserFactory } from '../api/super_user/models/super.user.model';
 export class DataBase {
   private static _instance: DataBase;
   public sequelize: Sequelize;
@@ -13,6 +14,7 @@ export class DataBase {
   public Rol: RolStatic;
   public SubRol: SubRolStatic;
   public Company: CompanyStatic;
+  public SuperUser: SuperUserStatic;
   constructor() {
     this.sequelize = new Sequelize(config.NAME_DB, config.USER_DB, config.PASSWORD_DB, {
       host: config.HOST_DB,
@@ -29,6 +31,7 @@ export class DataBase {
     this.Rol = RolFactory(this.sequelize);
     this.SubRol = SubRolFactory(this.sequelize);
     this.Company = CompanyFactory(this.sequelize);
+    this.SuperUser = SuperUserFactory(this.sequelize);
     this.connectDb();
     this.associations();
   }
@@ -37,8 +40,8 @@ export class DataBase {
   }
   private connectDb(): void {
     this.sequelize
-      // .authenticate()
-      .sync({ alter: true, logging: console.log })
+      .authenticate()
+      // .sync({ alter: true, logging: console.log })
       .then(() => {
         // this.bank.sync({ alter: true, logging: console.log })
         console.log('¡Run database!');

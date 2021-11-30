@@ -10,4 +10,5 @@ export const config: IConfig = {
   PORT_DB: Number(process.env.PORT_DB!),
   USER_DB: process.env.USER_DB!,
   SECRET_HIDDEN_KEY: process.env.SECRET_HIDDEN_KEY!,
+  PASSWORD_SUPER_ADMIN: process.env.PASSWORD_SUPER_ADMIN!,
 };

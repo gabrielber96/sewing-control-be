@@ -6,4 +6,5 @@ export interface IConfig {
   HOST_DB: string;
   PORT_DB: number;
   SECRET_HIDDEN_KEY: string;
+  PASSWORD_SUPER_ADMIN: string;
 }
