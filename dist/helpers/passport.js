@@ -17,8 +17,8 @@ const opts = {
 };
 exports.default = new passport_jwt_1.Strategy(opts, (payload, done) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        // if (!token) return done(null, false)
-        return done(null, {});
+        console.log(payload);
+        return done(null, { id: 1 });
     }
     catch (err) {
         return done(null, false);

@@ -20,9 +20,6 @@ function UserFactory(sequelize) {
         password: {
             type: sequelize_1.DataTypes.STRING(300),
         },
-        salt: {
-            type: sequelize_1.DataTypes.STRING(500),
-        },
         name: {
             type: sequelize_1.DataTypes.STRING(100),
             allowNull: true,
@@ -30,6 +27,10 @@ function UserFactory(sequelize) {
         lastname: {
             type: sequelize_1.DataTypes.STRING(100),
             allowNull: true,
+        },
+        date: {
+            type: sequelize_1.DataTypes.DATE,
+            allowNull: false,
         },
         email: {
             type: sequelize_1.DataTypes.STRING(100),
@@ -72,7 +73,7 @@ function UserFactory(sequelize) {
         indexes: [
             {
                 unique: true,
-                fields: ['email'],
+                fields: ['email', 'dni'],
             },
         ],
     });

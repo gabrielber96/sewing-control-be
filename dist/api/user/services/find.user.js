@@ -11,7 +11,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.findOneUser = void 0;
 const database_1 = require("../../../database");
-const findOneUser = (attributes, where) => __awaiter(void 0, void 0, void 0, function* () {
+const findOneUser = (where, attributes) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const user = yield database_1.DataBase.instance.User.findOne({
             attributes,

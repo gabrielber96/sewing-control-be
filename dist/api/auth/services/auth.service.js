@@ -8,23 +8,15 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.createUser = void 0;
-const database_1 = require("../../../database");
-const moment_1 = __importDefault(require("moment"));
-const bcrypt_1 = require("bcrypt");
-const createUser = (user) => __awaiter(void 0, void 0, void 0, function* () {
+exports.signUpService = void 0;
+const create_user_1 = require("../../user/services/create.user");
+const signUpService = (user) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const salt = yield bcrypt_1.genSalt(10);
-        const password = yield bcrypt_1.hash(user.password, salt);
-        console.log(password);
-        return yield database_1.DataBase.instance.User.create(Object.assign(Object.assign({}, user), { created: moment_1.default().toDate(), password }));
+        return yield create_user_1.createUser(user);
     }
     catch (err) {
         throw err;
     }
 });
-exports.createUser = createUser;
+exports.signUpService = signUpService;

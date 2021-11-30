@@ -4,12 +4,15 @@ import { SubRolFactory, SubRolStatic } from '../api/rol/models/sub.rol.model';
 import { UserFactory, UserStatic } from '../api/user/models/user.model';
 import { config } from '../config';
 import { rolHasManyUser, subRolHasManyUser } from './associations/user';
+import { CompanyStatic, CompanyFactory } from '../api/company/models/company.model';
+import { companyHasManyUser } from './associations/company';
 export class DataBase {
   private static _instance: DataBase;
   public sequelize: Sequelize;
   public User: UserStatic;
   public Rol: RolStatic;
   public SubRol: SubRolStatic;
+  public Company: CompanyStatic;
   constructor() {
     this.sequelize = new Sequelize(config.NAME_DB, config.USER_DB, config.PASSWORD_DB, {
       host: config.HOST_DB,
@@ -25,6 +28,7 @@ export class DataBase {
     this.User = UserFactory(this.sequelize);
     this.Rol = RolFactory(this.sequelize);
     this.SubRol = SubRolFactory(this.sequelize);
+    this.Company = CompanyFactory(this.sequelize);
     this.connectDb();
     this.associations();
   }
@@ -33,8 +37,8 @@ export class DataBase {
   }
   private connectDb(): void {
     this.sequelize
-      .authenticate()
-      // .sync({ alter: true, logging: console.log })
+      // .authenticate()
+      .sync({ alter: true, logging: console.log })
       .then(() => {
         // this.bank.sync({ alter: true, logging: console.log })
         console.log('¡Run database!');
@@ -44,5 +48,6 @@ export class DataBase {
   private associations() {
     rolHasManyUser(this.Rol, this.User);
     subRolHasManyUser(this.SubRol, this.User);
+    companyHasManyUser(this.Company, this.User);
   }
 }

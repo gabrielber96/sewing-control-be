@@ -12,19 +12,19 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.createUser = void 0;
-const database_1 = require("../../../database");
-const moment_1 = __importDefault(require("moment"));
-const bcrypt_1 = require("bcrypt");
-const createUser = (user) => __awaiter(void 0, void 0, void 0, function* () {
+exports.findAllSubRolController = void 0;
+const http_errors_1 = __importDefault(require("http-errors"));
+const sequelize_1 = __importDefault(require("sequelize"));
+const find_sub_rol_1 = require("../services/find.sub.rol");
+const findAllSubRolController = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const salt = yield bcrypt_1.genSalt(10);
-        const password = yield bcrypt_1.hash(user.password, salt);
-        console.log(password);
-        return yield database_1.DataBase.instance.User.create(Object.assign(Object.assign({}, user), { created: moment_1.default().toDate(), password }));
+        const list = yield find_sub_rol_1.findAllSubRol();
+        res.status(200).json(list);
     }
     catch (err) {
-        throw err;
+        if (err instanceof sequelize_1.default.ValidationError)
+            next(http_errors_1.default(400, err));
+        next(http_errors_1.default(404, err));
     }
 });
-exports.createUser = createUser;
+exports.findAllSubRolController = findAllSubRolController;
