@@ -4,9 +4,10 @@ WORKDIR /sewing-control-be
 
 COPY . .
 
-RUN npm i nodemon -g
 RUN npm i
+RUN npm i nodemon ts-node typescript -g
+
 
 EXPOSE 3000
 
-CMD ["nodemon","--legacy-watch","./dist/index.js"]
+# CMD ["node","./dist/index.js"]

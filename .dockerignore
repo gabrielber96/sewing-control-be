@@ -1,9 +1,0 @@
-.env
-node_modules/
-src/
-nodemon.json
-tsconfig.json
-README.md
-docker-compose.yaml
-Dockerfile
-package-lock.json
