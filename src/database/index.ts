@@ -42,6 +42,7 @@ export class DataBase {
     this.sequelize
       .authenticate()
       // .sync({ alter: true, logging: console.log })
+
       .then(() => {
         // this.bank.sync({ alter: true, logging: console.log })
         console.log('¡Run database!');

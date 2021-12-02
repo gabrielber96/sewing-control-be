@@ -1,0 +1,18 @@
+version: "3.7"
+services:
+  app:
+    image: byhands/sewing-control-be:v11.1.4
+    volumes:
+      - C:\Users\rev-x\Desktop\SOSolutions\sewing-control-be\dist:/sewing-control-be/dist
+    ports:
+      - 3000:3000
+    environment:
+      - PORT=3000
+      - NAME_DB=sewing_control
+      - USER_DB=gabrieldev
+      - PASSWORD_DB=sewingCONTROL2021@
+      - HOST_DB=157.245.136.250
+      - PORT_DB=3306
+      - SECRET_HIDDEN_KEY=mysecret
+      - PASSWORD_SUPER_ADMIN=654321
+       

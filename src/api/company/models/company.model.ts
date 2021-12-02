@@ -24,7 +24,7 @@ export function CompanyFactory(sequelize: Sequelize): CompanyStatic {
         primaryKey: true,
         autoIncrement: true,
       },
-      name: {
+      business_name: {
         type: DataTypes.STRING(100),
         allowNull: false,
       },
