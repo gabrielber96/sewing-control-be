@@ -2,10 +2,10 @@ version: "3.7"
 services:
   api:
     container_name: sewing-control-be
-    image: byhands/sewing-control-be:v11.1.4
-    # build: .
-    # volumes:
-      # - "./src:/sewing-control-be/src"
+    # image: byhands/sewing-control-be:v12
+    build: .
+    volumes:
+      - "./src:/sewing-control-be/src"
     ports:
       - 3000:3000
     environment:
@@ -18,5 +18,5 @@ services:
       - SECRET_HIDDEN_KEY=mysecret
       - PASSWORD_SUPER_ADMIN=654321
  
-    # tty: true
+    tty: true
        
