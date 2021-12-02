@@ -1,5 +1,5 @@
 import { BuildOptions, DataTypes, Model, Sequelize } from 'sequelize';
-export interface CompanyAttributes {
+export interface ContactAttributes {
   id?: number;
   name?: string;
   ruc?: number;
@@ -8,15 +8,15 @@ export interface CompanyAttributes {
   updated?: Date;
   state?: number;
 }
-export interface CompanyModel extends Model<CompanyAttributes>, CompanyAttributes {}
-export class Company extends Model<CompanyModel, CompanyAttributes> {}
-export type CompanyStatic = typeof Model & {
-  new (values?: object, options?: BuildOptions): CompanyModel;
+export interface ContactModel extends Model<ContactAttributes>, ContactAttributes {}
+export class Contact extends Model<ContactModel, ContactAttributes> {}
+export type ContactStatic = typeof Model & {
+  new (values?: object, options?: BuildOptions): ContactModel;
 };
 
-export function CompanyFactory(sequelize: Sequelize): CompanyStatic {
-  return <CompanyStatic>sequelize.define(
-    'company',
+export function ContactFactory(sequelize: Sequelize): ContactStatic {
+  return <ContactStatic>sequelize.define(
+    'Contact',
     {
       id: {
         type: DataTypes.INTEGER,
@@ -51,7 +51,7 @@ export function CompanyFactory(sequelize: Sequelize): CompanyStatic {
     },
     {
       initialAutoIncrement: '1',
-      tableName: 'company',
+      tableName: 'Contact',
       timestamps: false,
     }
   );
