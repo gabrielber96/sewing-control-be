@@ -16,7 +16,7 @@ export type ContactStatic = typeof Model & {
 
 export function ContactFactory(sequelize: Sequelize): ContactStatic {
   return <ContactStatic>sequelize.define(
-    'Contact',
+    'contact',
     {
       id: {
         type: DataTypes.INTEGER,
@@ -24,17 +24,21 @@ export function ContactFactory(sequelize: Sequelize): ContactStatic {
         primaryKey: true,
         autoIncrement: true,
       },
-      business_name: {
+      name: {
         type: DataTypes.STRING(100),
         allowNull: false,
       },
-      ruc: {
+      lastname: {
+        type: DataTypes.STRING(100),
+        allowNull: false,
+      },
+      dni: {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
-      direction: {
-        type: DataTypes.STRING,
-        allowNull: true,
+      cellphone: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
       },
       created: {
         type: DataTypes.DATE,
@@ -44,14 +48,10 @@ export function ContactFactory(sequelize: Sequelize): ContactStatic {
         type: DataTypes.DATE,
         allowNull: true,
       },
-      state: {
-        type: DataTypes.TINYINT,
-        defaultValue: 1,
-      },
     },
     {
       initialAutoIncrement: '1',
-      tableName: 'Contact',
+      tableName: 'contact',
       timestamps: false,
     }
   );

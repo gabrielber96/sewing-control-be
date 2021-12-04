@@ -1,11 +1,14 @@
+# .vscode/
+# .devcontainer/
+# .dockerignore
+# .gitignore
+# docker-compose.yml
+# Dockerfile
+# nodemon.json
+# package-lock.json
+# README.md
+# tsconfig.json
+
+
 node_modules/
-.vscode/
-.devcontainer/
-.dockerignore
-.gitignore
-docker-compose.yml
-Dockerfile
-nodemon.json
-package-lock.json
-README.md
-tsconfig.json
+dist/
