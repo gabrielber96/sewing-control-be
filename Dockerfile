@@ -2,7 +2,8 @@ FROM node:16-alpine3.12
 
 WORKDIR /sewing-control-be
 
-COPY . .
+COPY /src /sewing-control-be/
+
 
 RUN npm i
 RUN npm i nodemon ts-node typescript -g

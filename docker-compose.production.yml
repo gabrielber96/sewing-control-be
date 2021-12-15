@@ -1,0 +1,35 @@
+version: "3.7"
+services:
+  api:
+    container_name: sewing-control-be
+    image: sewing-control-be:v1.1.4
+    depends_on:
+      mysql:
+        condition: service_healthy
+    ports:
+      - 3000:3000
+    environment:
+      PORT: 3000
+      NAME_DB: sewing_control
+      USER_DB: root
+      PASSWORD_DB: secret
+      HOST_DB: mysql
+      PORT_DB: 3306
+      SECRET_HIDDEN_KEY: mysecret
+      PASSWORD_SUPER_ADMIN: 654321
+    restart: always
+
+  mysql:
+    image: mysql:5.7
+    volumes:
+      - "../mysql/:/var/lib/mysql"
+    ports:
+      - 3307:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_DATABASE: sewing_control
+    healthcheck:
+      test: '/usr/bin/mysql --user=root --password=secret --execute "SHOW DATABASES;"'
+      interval: 2s
+      timeout: 30s
+      retries: 15
