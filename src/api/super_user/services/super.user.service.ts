@@ -1,5 +1,3 @@
-import { findOneSuperUser } from '../../super_user/services/find';
-import { createSuperUser } from '../../super_user/services/create';
 import { sign } from 'jsonwebtoken';
 import { config } from '../../../config/index';
 export const signInSuperAdminService = async () => {

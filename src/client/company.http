@@ -1,0 +1,14 @@
+### 
+POST  {{uri}}/companies
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+    "business_name":"Holinsys",
+    "ruc":10756526796,
+    "direction":"av los olivos 5035"
+}
+### 
+GET  {{uri}}/companies
+Content-Type: application/json
+Authorization: {{token}}

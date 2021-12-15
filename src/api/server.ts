@@ -1,4 +1,10 @@
-import express, { Application, NextFunction, Request, Response, Router } from 'express';
+import express, {
+  Application,
+  NextFunction,
+  Request,
+  Response,
+  Router,
+} from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
 import { createServer } from 'http';
@@ -7,6 +13,8 @@ import passport from 'passport';
 import passportMiddleware from '../helpers/passport';
 import { router as routerAuth } from '../api/auth/routes/auth.routes';
 import { router as routerRoles } from '../api/rol/routes';
+import { router as routerSuperUser } from '../api/super_user/routes/super.user.routes';
+import { router as routerCompany } from '../api/company/routes';
 
 export class Server {
   private _app: Application;
@@ -28,12 +36,14 @@ export class Server {
   routes(): void {
     //* AUTHENTICATE
     this._app.use('/', routerAuth);
+    this._app.use('/superuser', routerSuperUser);
 
     //* PASSPORT
     this._app.use(passport.authenticate('jwt', { session: false }));
 
-    //* ADMIN
+    //* GENERAL
     this._app.use('/roles', routerRoles);
+    this._app.use('/companies', routerCompany);
   }
   errors(): void {
     this._app.use((req: Request, res: Response, next: NextFunction) => {
@@ -41,14 +51,16 @@ export class Server {
       res.status(404);
       next(err);
     });
-    this._app.use((err: any, req: Request, res: Response, next: NextFunction) => {
-      console.log(err.stack);
-      res.status(err.status || 500).json({
-        status: err.status,
-        message: err.message,
-        stack: err.stack,
-      });
-    });
+    this._app.use(
+      (err: any, req: Request, res: Response, next: NextFunction) => {
+        console.log(err.stack);
+        res.status(err.status || 500).json({
+          status: err.status,
+          message: err.message,
+          stack: err.stack,
+        });
+      }
+    );
   }
   middlewares(): void {
     this._app.use(cors({ credentials: true }));

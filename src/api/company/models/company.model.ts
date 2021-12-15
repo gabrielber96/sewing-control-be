@@ -1,14 +1,16 @@
 import { BuildOptions, DataTypes, Model, Sequelize } from 'sequelize';
 export interface CompanyAttributes {
   id?: number;
-  name?: string;
+  business_name?: string;
   ruc?: number;
   direction?: string;
   created?: Date;
   updated?: Date;
   state?: number;
 }
-export interface CompanyModel extends Model<CompanyAttributes>, CompanyAttributes {}
+export interface CompanyModel
+  extends Model<CompanyAttributes>,
+    CompanyAttributes {}
 export class Company extends Model<CompanyModel, CompanyAttributes> {}
 export type CompanyStatic = typeof Model & {
   new (values?: object, options?: BuildOptions): CompanyModel;
@@ -29,7 +31,7 @@ export function CompanyFactory(sequelize: Sequelize): CompanyStatic {
         allowNull: false,
       },
       ruc: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING(20),
         allowNull: false,
       },
       direction: {

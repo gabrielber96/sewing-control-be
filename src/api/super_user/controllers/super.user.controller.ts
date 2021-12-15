@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import Sequelize from 'sequelize';
 import createError from 'http-errors';
-import { signInSuperAdminService } from '../services/super.user.auth.service';
+import { signInSuperAdminService } from '../services/super.user.service';
 
 export const signInSuperUserController = async (
   req: Request,

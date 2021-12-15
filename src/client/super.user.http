@@ -1,0 +1,8 @@
+### 
+POST  {{uri}}/superuser/signin
+Content-Type: application/json
+
+{
+    "username":"admin",
+    "password":"admin"
+}

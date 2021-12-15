@@ -18,6 +18,9 @@
     "cweijan.vscode-mysql-client2",
     "esbenp.prettier-vscode",
     "humao.rest-client",
-    "PKief.material-icon-theme"
+    "PKief.material-icon-theme",
+    "pmneo.tsimporter",
+    "christian-kohler.path-intellisense",
+    "visualstudioexptteam.vscodeintellicode"
   ]
 }
