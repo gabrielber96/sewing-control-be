@@ -1,24 +1,23 @@
 {
-	"name": "Node.js and Typescript",
-	"dockerComposeFile":"../docker-compose.yml",
-	"service": "api",
-	"workspaceFolder": "/sewing-control-be",
-	"shutdownAction": "stopCompose",
-	"settings": {
-		"terminal.integrated.automationShell.linux": "/bin/bash",
-		"editor.fontSize": 14,
-		"editor.formatOnSave": true,
-		"prettier.singleQuote": true,
-		"editor.formatOnType": true,
-		"workbench.iconTheme": "material-icon-theme",
-	},
-	"extensions": [
-		"aaron-bond.better-comments",
-		"CoenraadS.bracket-pair-colorizer",  
-		"cweijan.vscode-mysql-client2",
-		"esbenp.prettier-vscode",
-		"humao.rest-client",
-		"PKief.material-icon-theme",
-
-	]
+  "name": "Node.js and Typescript",
+  "dockerComposeFile": "../docker-compose.yml",
+  "service": "api",
+  "workspaceFolder": "/sewing-control-be",
+  "shutdownAction": "stopCompose",
+  "settings": {
+    "terminal.integrated.automationShell.linux": "/bin/bash",
+    "editor.fontSize": 14,
+    "editor.formatOnSave": true,
+    "prettier.singleQuote": true,
+    "editor.formatOnType": true,
+    "workbench.iconTheme": "material-icon-theme"
+  },
+  "extensions": [
+    "aaron-bond.better-comments",
+    "CoenraadS.bracket-pair-colorizer",
+    "cweijan.vscode-mysql-client2",
+    "esbenp.prettier-vscode",
+    "humao.rest-client",
+    "PKief.material-icon-theme"
+  ]
 }

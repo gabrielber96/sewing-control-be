@@ -9,14 +9,22 @@ services:
     ports:
       - 3000:3000
     environment:
-      - PORT=3000
-      - NAME_DB=sewing_control
-      - USER_DB=gabrieldev
-      - PASSWORD_DB=sewingCONTROL2021@
-      - HOST_DB=157.245.136.250
-      - PORT_DB=3306
-      - SECRET_HIDDEN_KEY=mysecret
-      - PASSWORD_SUPER_ADMIN=654321
- 
+      PORT: 3000
+      NAME_DB: sewing_control
+      USER_DB: root
+      PASSWORD_DB: secret
+      HOST_DB: mysql
+      PORT_DB: 3306
+      SECRET_HIDDEN_KEY: mysecret
+      PASSWORD_SUPER_ADMIN: 654321
     tty: true
-       
+
+  mysql:
+    image: mysql:5.7
+    volumes:
+      - "../mysql/:/var/lib/mysql"
+    ports:
+      - 3307:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_DATABASE: sewing_control
