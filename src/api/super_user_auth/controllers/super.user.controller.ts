@@ -3,7 +3,11 @@ import Sequelize from 'sequelize';
 import createError from 'http-errors';
 import { signInSuperAdminService } from '../services/super.user.auth.service';
 
-export const signInController = async (req: Request, res: Response, next: NextFunction) => {
+export const signInController = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     const jwt = await signInSuperAdminService();
     res.status(200).json({ jwt });
