@@ -20,7 +20,7 @@ import {
   ContactStatic,
   ContactFactory,
 } from '../api/contact/models/contact.model';
-import { tableRol, tableSubRol } from './default';
+import { tableRol, tableSubRol, tableSuperUser } from './default';
 export class DataBase {
   private static _instance: DataBase;
   public sequelize: Sequelize;
@@ -68,7 +68,8 @@ export class DataBase {
         console.log('¡Run database!');
         //*Tables for default
         // tableRol();
-        tableSubRol();
+        // tableSubRol();
+        // tableSuperUser();
       })
       .catch((err) => console.log(err));
   }

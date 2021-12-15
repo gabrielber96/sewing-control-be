@@ -39,3 +39,18 @@ export const tableSubRol = () => {
       if (e) console.log(e);
     });
 };
+export const tableSuperUser = () => {
+  DataBase.instance.SuperUser.bulkCreate([
+    {
+      id: 1,
+      username: 'admin',
+      password: 'admin',
+    },
+  ])
+    .then((values) => {
+      console.log(values);
+    })
+    .catch((e) => {
+      if (e) console.log(e);
+    });
+};

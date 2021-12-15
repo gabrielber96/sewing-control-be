@@ -2,9 +2,12 @@ import { BuildOptions, DataTypes, Model, Sequelize } from 'sequelize';
 export interface SuperUserAttributes {
   id?: number;
   username?: string;
+  password?: string;
   session_active?: number;
 }
-export interface SuperUserModel extends Model<SuperUserAttributes>, SuperUserAttributes {}
+export interface SuperUserModel
+  extends Model<SuperUserAttributes>,
+    SuperUserAttributes {}
 export class SuperUser extends Model<SuperUserModel, SuperUserAttributes> {}
 export type SuperUserStatic = typeof Model & {
   new (values?: object, options?: BuildOptions): SuperUserModel;
@@ -22,11 +25,15 @@ export function SuperUserFactory(sequelize: Sequelize): SuperUserStatic {
       },
       username: {
         type: DataTypes.STRING(100),
-        defaultValue: 'Super Admin',
+        allowNull: false,
+      },
+      password: {
+        type: DataTypes.STRING(100),
+        allowNull: false,
       },
       session_active: {
         type: DataTypes.TINYINT,
-        defaultValue: 1,
+        defaultValue: 0,
       },
     },
     {

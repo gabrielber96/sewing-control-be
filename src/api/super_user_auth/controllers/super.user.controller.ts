@@ -3,7 +3,7 @@ import Sequelize from 'sequelize';
 import createError from 'http-errors';
 import { signInSuperAdminService } from '../services/super.user.auth.service';
 
-export const signInController = async (
+export const signInSuperUserController = async (
   req: Request,
   res: Response,
   next: NextFunction
